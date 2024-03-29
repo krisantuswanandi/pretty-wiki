@@ -1,0 +1,14 @@
+{
+  "name": "Wikipedia Reading Mode",
+  "namespace": "https://santus.dev/",
+  "version": "0.0.1-alpha.1",
+  "description": "Read Wikipedia like you mean it.",
+  "author": "Krisantus Wanandi (https://github.com/krisantuswanandi)",
+  "match": [
+    "*://*.wikipedia.org/**"
+  ],
+  "icon": "https://www.google.com/s2/favicons?sz=64&domain=wikipedia.org",
+  "run-at": "document-body",
+  "license": "MIT",
+  "supportURL": "https://github.com/krisantuswanandi/wikipedia-reading-mode"
+}
