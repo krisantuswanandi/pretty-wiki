@@ -1,7 +1,6 @@
 {
   "name": "Wikipedia Reading Mode",
   "namespace": "https://santus.dev/",
-  "version": "0.0.1-alpha.2",
   "description": "Read Wikipedia like you mean it.",
   "author": "Krisantus Wanandi (https://github.com/krisantuswanandi)",
   "match": [

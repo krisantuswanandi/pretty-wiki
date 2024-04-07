@@ -1,4 +1,5 @@
 import rawManifest from "../manifest.json";
+import { version } from "../package.json";
 
 const manifest: Record<string, string | Array<string>> = rawManifest;
 
@@ -16,6 +17,7 @@ const rawMetadata = Object.keys(manifest)
 
 const metadata = `// ==UserScript==
 ${rawMetadata}
+// @version ${version}
 // ==/UserScript==
 `;
 
