@@ -12,8 +12,15 @@ enableButton.addEventListener("change", (event) => {
   }
 });
 
+window.addEventListener("keydown", (event) => {
+  if (event.key.toLowerCase() === "x") {
+    enableButton.checked = !enableButton.checked;
+    enableButton.dispatchEvent(new Event("change"));
+  }
+});
+
 const enableTitle = document.createElement("div");
-enableTitle.innerHTML = "Enabled";
+enableTitle.innerHTML = "Enabled (x)";
 
 const settingsItem = document.createElement("div");
 settingsItem.classList.add("wrm-settings-item");

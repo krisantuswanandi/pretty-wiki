@@ -1,12 +1,11 @@
 {
   "name": "wikipedia-reading-mode",
-  "module": "index.js",
+  "module": "dist/script.js",
   "version": "0.0.1-alpha.2",
   "type": "module",
   "scripts": {
     "build": "bun scripts/build.ts",
     "dev": "bun scripts/dev.ts",
-    "serve": "bun server.ts",
     "release": "bumpp"
   },
   "devDependencies": {
