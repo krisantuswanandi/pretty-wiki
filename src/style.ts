@@ -24,6 +24,10 @@ body.wrm-enabled {
   }
 }
 
+body.wrm-enabled.wrm-hide-links a {
+  color: #202122;
+}
+
 #wrm-toolbar {
   align-items: center;
   background-color: #fff;
@@ -72,7 +76,7 @@ body.wrm-enabled {
   border-radius: 12px;
   border: 1px solid #ddd;
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
-  padding: 16px;
+  padding: 8px;
   width: 200px;
   z-index: 1000;
 }
@@ -92,6 +96,7 @@ body.wrm-enabled {
 .wrm-settings-item {
   display: flex;
   justify-content: space-between;
+  padding: 8px;
 }
 `;
   document.head.appendChild(style);

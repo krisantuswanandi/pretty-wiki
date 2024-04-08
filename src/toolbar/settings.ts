@@ -1,36 +1,72 @@
 import ellipsisIcon from "../icons/ellipsis";
 
-const enableButton = document.createElement("input");
-enableButton.type = "checkbox";
-enableButton.checked = true;
-enableButton.addEventListener("change", (event) => {
-  const target = event.target as HTMLInputElement;
-  if (target && target.checked) {
+function createItem(options: {
+  label: string;
+  onEnabled?: () => void;
+  onDisabled?: () => void;
+  checked?: boolean;
+  shortcut?: string;
+}) {
+  const input = document.createElement("input");
+  input.type = "checkbox";
+  input.checked = !!options.checked;
+  input.addEventListener("change", (event) => {
+    const target = event.target as HTMLInputElement;
+    if (target && target.checked) {
+      options.onEnabled?.();
+    } else {
+      options.onDisabled?.();
+    }
+  });
+
+  const title = document.createElement("div");
+  title.innerHTML = options.label;
+
+  const item = document.createElement("div");
+  item.classList.add("wrm-settings-item");
+  item.appendChild(title);
+  item.appendChild(input);
+
+  if (options.shortcut) {
+    window.addEventListener("keydown", (event) => {
+      if (event.key.toLowerCase() === options.shortcut) {
+        input.checked = !input.checked;
+        input.dispatchEvent(new Event("change"));
+      }
+    });
+    title.innerHTML += ` (${options.shortcut})`;
+  }
+
+  return item;
+}
+
+const enabledToggle = createItem({
+  label: "Enabled",
+  onEnabled: () => {
     document.body.classList.add("wrm-enabled");
-  } else {
+  },
+  onDisabled: () => {
     document.body.classList.remove("wrm-enabled");
-  }
+  },
+  checked: true,
+  shortcut: "x",
 });
 
-window.addEventListener("keydown", (event) => {
-  if (event.key.toLowerCase() === "x") {
-    enableButton.checked = !enableButton.checked;
-    enableButton.dispatchEvent(new Event("change"));
-  }
+const hideLinksToggle = createItem({
+  label: "Hide Links",
+  onEnabled: () => {
+    document.body.classList.add("wrm-hide-links");
+  },
+  onDisabled: () => {
+    document.body.classList.remove("wrm-hide-links");
+  },
 });
-
-const enableTitle = document.createElement("div");
-enableTitle.innerHTML = "Enabled (x)";
-
-const settingsItem = document.createElement("div");
-settingsItem.classList.add("wrm-settings-item");
-settingsItem.appendChild(enableTitle);
-settingsItem.appendChild(enableButton);
 
 const toolbarPopup = document.createElement("div");
 toolbarPopup.classList.add("wrm-toolbar-popup");
 toolbarPopup.classList.add("hidden");
-toolbarPopup.appendChild(settingsItem);
+toolbarPopup.appendChild(enabledToggle);
+toolbarPopup.appendChild(hideLinksToggle);
 document.body.appendChild(toolbarPopup);
 
 const menu = document.createElement("button");
