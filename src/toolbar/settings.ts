@@ -62,11 +62,27 @@ const hideLinksToggle = createItem({
   },
 });
 
+const openInNewTabToggle = createItem({
+  label: "Open Links in New Tab",
+  onEnabled: () => {
+    document.querySelectorAll("a").forEach((link) => {
+      if (link.href.startsWith("#")) return;
+      link.target = "_blank";
+    });
+  },
+  onDisabled: () => {
+    document.querySelectorAll("a").forEach((link) => {
+      link.removeAttribute("target");
+    });
+  },
+});
+
 const toolbarPopup = document.createElement("div");
 toolbarPopup.classList.add("wrm-toolbar-popup");
 toolbarPopup.classList.add("hidden");
 toolbarPopup.appendChild(enabledToggle);
 toolbarPopup.appendChild(hideLinksToggle);
+toolbarPopup.appendChild(openInNewTabToggle);
 document.body.appendChild(toolbarPopup);
 
 const menu = document.createElement("button");
