@@ -28,6 +28,10 @@ body.wrm-enabled.wrm-hide-links a {
   color: #202122;
 }
 
+body.wrm-enabled.wrm-hide-refs sup {
+  display: none;
+}
+
 #wrm-toolbar {
   align-items: center;
   background-color: #fff;
@@ -77,7 +81,7 @@ body.wrm-enabled.wrm-hide-links a {
   border: 1px solid #ddd;
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
   padding: 8px;
-  width: 200px;
+  width: 240px;
   z-index: 1000;
 }
 .wrm-toolbar-popup.hidden {

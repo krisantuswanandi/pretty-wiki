@@ -62,6 +62,16 @@ const hideLinksToggle = createItem({
   },
 });
 
+const hideRefsToggle = createItem({
+  label: "Hide References",
+  onEnabled: () => {
+    document.body.classList.add("wrm-hide-refs");
+  },
+  onDisabled: () => {
+    document.body.classList.remove("wrm-hide-refs");
+  },
+});
+
 const openInNewTabToggle = createItem({
   label: "Open Links in New Tab",
   onEnabled: () => {
@@ -82,6 +92,7 @@ toolbarPopup.classList.add("wrm-toolbar-popup");
 toolbarPopup.classList.add("hidden");
 toolbarPopup.appendChild(enabledToggle);
 toolbarPopup.appendChild(hideLinksToggle);
+toolbarPopup.appendChild(hideRefsToggle);
 toolbarPopup.appendChild(openInNewTabToggle);
 document.body.appendChild(toolbarPopup);
 
