@@ -1,7 +1,6 @@
 // ==UserScript==
 // @name Wikipedia Reading Mode
 // @namespace https://santus.dev/
-// @version 0.0.1-alpha.2
 // @description Read Wikipedia like you mean it.
 // @author Krisantus Wanandi (https://github.com/krisantuswanandi)
 // @match *://*.wikipedia.org/**
@@ -9,6 +8,7 @@
 // @run-at document-body
 // @license MIT
 // @supportURL https://github.com/krisantuswanandi/wikipedia-reading-mode
+// @version 0.0.1-alpha.3
 // ==/UserScript==
 
 (function () {
@@ -191,8 +191,14 @@ enableButton.addEventListener("change", (event) => {
     document.body.classList.remove("wrm-enabled");
   }
 });
+window.addEventListener("keydown", (event) => {
+  if (event.key.toLowerCase() === "x") {
+    enableButton.checked = !enableButton.checked;
+    enableButton.dispatchEvent(new Event("change"));
+  }
+});
 var enableTitle = document.createElement("div");
-enableTitle.innerHTML = "Enabled";
+enableTitle.innerHTML = "Enabled (x)";
 var settingsItem = document.createElement("div");
 settingsItem.classList.add("wrm-settings-item");
 settingsItem.appendChild(enableTitle);
